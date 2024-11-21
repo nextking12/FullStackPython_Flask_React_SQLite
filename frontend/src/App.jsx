@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import ContactList from './ContactList'
 import ContactForm from './ContactForm'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Modal, Button } from 'react-bootstrap';
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -42,18 +44,27 @@ function App() {
 
   return (
     <>
-      <ContactList contacts={contacts} updateContact={openEditModal} updateCallback={onUpdate}/>
-      <button onClick={openCreateModal}>Create New Contact</button>
-      {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={closeModal}>
-              &times;
-            </span>
-            <ContactForm existingContact={currentContact} updateCallback={onUpdate}/>
-          </div>
-        </div>
-      )}
+      <ContactList contacts={contacts} updateContact={openEditModal} updateCallback={onUpdate} />
+      
+      {/* Bootstrap Button */}
+      <Button variant="primary" onClick={openCreateModal}>
+        Create New Contact
+      </Button>
+  
+      {/* Bootstrap Modal */}
+      <Modal show={isModalOpen} onHide={closeModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {currentContact ? 'Edit Contact' : 'Create Contact'}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ContactForm 
+            existingContact={currentContact} 
+            updateCallback={onUpdate}
+          />
+        </Modal.Body>
+      </Modal>
     </>
   );
 }

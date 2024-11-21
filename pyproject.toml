@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "fullstackpython-flask-react-sqlite"
+version = "0.1.0"
+description = ""
+authors = ["Edward King <king8three@gmailcom>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+Flask = "^3.1.0"
+Flask-SQLAlchemy = "^3.1.1"
+Flask-Cors = "^5.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
